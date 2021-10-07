@@ -24,7 +24,7 @@ router.get('/:id', async(req, res) => {
             include: [{ model: Product }],
         });
         if (!data) {
-            res.status(404).json({ response: '[CATEGORY] WITH THAT [ID] NOT FOUND' })
+            res.status(404).json({ message: 'No category with this ID' });
             return;
         };
         res.status(200).json(data);
@@ -52,7 +52,7 @@ router.put('/:id', async(req, res) => {
             },
         });
         if (!data[0]) {
-            res.status(404).json({ response: '[CATEGORY] WITH THAT [ID] NOT FOUND' });
+            res.status(404).json({ message: 'No category with this ID' });
             return;
         };
         res.status(200).json(data);
@@ -70,7 +70,7 @@ router.delete('/:id', async(req, res) => {
             },
         });
         if (!data) {
-            res.status(404).json({ response: '[CATEGORY] WITH THAT [ID] NOT FOUND' });
+            res.status(404).json({ message: 'No category with this ID' });
             return;
         };
         res.status(200).json(data);
