@@ -25,13 +25,14 @@ router.get('/:id', async(req, res) => {
             });
             if (!data) {
                 res.status(404).json({ message: 'No tag with this ID' });
-            })
-        return;
-    }; res.status(200).json(data);
-}
-catch (err) {
-    res.status(500).json(err)
-};
+            }
+            res.status(200).json(data);
+            return;
+
+        }
+        catch (err) {
+            res.status(500).json(err)
+        };
 });
 
 router.post('/', async(req, res) => {
