@@ -17,20 +17,21 @@ router.get('/', async(req, res) => {
 });
 
 router.get('/:id', async(req, res) => {
-    // find one tag by its `id` value
-    // be sure to include its associated Products
-    try {
-        const data = await Tag.findByPk(req.params.id, {
-            include: [{ model: Product }],
-        });
-        if (!data) {
-            res.status(404).json({ response: '[tag] WITH THAT [ID] NOT FOUND' })
-            return;
-        };
-        res.status(200).json(data);
-    } catch (err) {
-        res.status(500).json(err)
-    };
+        // find one tag by its `id` value
+        // be sure to include its associated Products
+        try {
+            const data = await Tag.findByPk(req.params.id, {
+                include: [{ model: Product }],
+            });
+            if (!data) {
+                res.status(404).json({ message: 'No tag with this ID' });
+            })
+        return;
+    }; res.status(200).json(data);
+}
+catch (err) {
+    res.status(500).json(err)
+};
 });
 
 router.post('/', async(req, res) => {
@@ -52,7 +53,7 @@ router.put('/:id', async(req, res) => {
             },
         });
         if (!data[0]) {
-            res.status(404).json({ response: '[tag] WITH THAT [ID] NOT FOUND' });
+            res.status(404).json({ message: 'No category with this ID' });
             return;
         };
         res.status(200).json(data);
@@ -70,7 +71,7 @@ router.delete('/:id', async(req, res) => {
             },
         });
         if (!data) {
-            res.status(404).json({ response: '[TAG] WITH THAT [ID] NOT FOUND' });
+            res.status(404).json({ message: 'No category with this ID' });
             return;
         };
         res.status(200).json(data);
